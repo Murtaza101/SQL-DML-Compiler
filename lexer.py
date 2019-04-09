@@ -26,6 +26,9 @@ class Lexer(object):
                 # Comparison Operator token
                 elif re.match('<|>|==|>=|<=', word):
                     tokens.append(["ComparisonOperator", word])
+                # Data Types
+                elif re.match('void|String|int|float|boolean', word):
+                    tokens.append(["Data Types", word])
                 # Boolean token
                 elif re.match('True|False', word):
                     tokens.append(["Boolean", word])
