@@ -17,7 +17,36 @@ class Lexer(object):
 		# loop through each word in source code
 		while source_index < len(source_code):
 			if source_code[source_index] is not None:
-				print(source_code[source_index])
+				word = source_code[source_index]
+				# reads SQL keywords 
+				if word == ("UPDATE" or "SELECT" or "INTO" or "INSERT" or "DELETE" or "SET" or "CREATE" or "TABLE" or "DISTINCT" or "FROM" or "WHERE" or "AND" or "OR" or "NOT" or 'ORDER' or 'BY' or 'VALUES' or 'IS' or 'NULL' or 'IN' or 'ON' or 'INNER' or 'JOIN' or 'OUTER' or 'LEFT' or 'RIGHT' or '*'): 
+					tokens.append(["SQLKeywords",word])
+				# reads identifiers
+				elif re.match("[a-zA-Z]+\d*",word):
+					tokens.append(["Identifier",word])
+				# reads integer token
+				elif re.match("\d+",word):
+					tokens.append(["Integer",word])
+				# Comparison Operator token
+				elif re.match('<|>|==|>=|<=',word):
+					tokens.append(["ComparisonOperator",word])
+				# Boolean token
+				elif re.match('True|False',word):
+					tokens.append(["Boolean",word])
+				# Arithmetic Operator token
+				elif re.match('=|+|-|/|*',word):
+					tokens.append(["Operator",word])
+				# Braces token
+				elif re.match('{|}|\(|\)|\[|\]',word):
+					tokens.append(["Braces",word])	
+				# Separators token
+				elif re.match(',|;',word):
+					tokens.append(["Separator",word])
+				# Traditional Programming Language keywords
+				elif re.match('if|else|while',word):
+					tokens.append(["PLKeywords",word])
+				
+				
 			# increases word index after checking it
 			source_index += 1
 		# return created tokens
