@@ -1,0 +1,16 @@
+void InsertVal(String table, String[] columns, String[] value) {
+
+	int count = 0-1;
+
+	boolean = False;	
+
+	while(count < columns.length()) {
+
+		INSERT INTO table (column[i])
+
+		VALUES (value[i]);
+
+		count++; 
+
+	}
+}
